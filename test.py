@@ -1,13 +1,15 @@
 import sys
 import csv
 
-var ="00000019F88FE2"
 try:
-    var_reverse=f'{bytes.fromhex(str(hex(int(var,base=16))[2:]))[::-1].hex()}'
-    print(var_reverse)
-except ValueError as v:
-    print(f"kek {str(hex(int(var,base=16)))[2:]}")
-
+    var ="deeef95"
+    strCutZeroInBegin = str(hex(int(var,base=16)))[2:]
+    if(len(strCutZeroInBegin)%2):
+        strCutZeroInBegin="0"+strCutZeroInBegin
+    string=f'{bytes.fromhex(strCutZeroInBegin)[::-1].hex()}'
+    print(string)
+except ValueError as e:
+    print(f'{e}  {strCutZeroInBegin} ')
 
 '''
 filename=sys.argv[2]
