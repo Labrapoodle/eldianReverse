@@ -2,9 +2,12 @@ import sys
 import csv
 
 var ="00000019F88FE2"
+try:
+    var_reverse=f'{bytes.fromhex(str(hex(int(var,base=16))[2:]))[::-1].hex()}'
+    print(var_reverse)
+except ValueError as v:
+    print(f"kek {str(hex(int(var,base=16)))[2:]}")
 
-
-print(hex(int(var,base=16)))
 
 '''
 filename=sys.argv[2]

@@ -22,34 +22,31 @@ except IOError as e:
 
 
     
-rows.append(["1;2;3"])
+
 
 for i in range(row_to_start,len(rows)):
-    #for j in range(len(rows[i])):
-    #    if ';' in rows[i][j]:
-    #        rows[i][j] = "\""+rows[i][j]+"\""
-    print(len(rows[i]),rows[i])
-    '''
-    if(rows[i][:rows[i][0].find(';')]!=""):
+    
+    
+    if(rows[i][column_to_read]!=""):
         try:
             #if(len(rows[i][column_to_read])!=''):
-                ind_in_str=-1
-                for k in range(column_to_read):
-                    ind_in_str=rows[i][0].find(';',ind_in_str+1)
-                end_ind = rows[i][0].find(';',ind_in_str+1)
-                str_temp = rows[i][0][ind_in_str+2:end_ind-1]
-
-
-                rows[i]+=(";"+f"{bytes.fromhex(str_temp)[::-1].hex()}"+"\n")
+            #    ind_in_str=-1
+            #    for k in range(column_to_read):
+            #        ind_in_str=rows[i][0].find(';',ind_in_str+1)
+            #    end_ind = rows[i][0].find(';',ind_in_str+1)
+            #    str_temp = rows[i][0][ind_in_str+2:end_ind-1]
+                strCutZeroInBegin = str(hex(int(rows[i][column_to_read],base=16)))[2:]
+                string=f'{bytes.fromhex(strCutZeroInBegin)[::-1].hex()}'
+                rows[i][column_to_read]=string
 
                 #rows[i].append(f"\"{bytes.fromhex(rows[i][column_to_read])[::-1].hex()}\"")
         except ValueError as e:
-            print(f'puk  {e} {str_temp} {str_temp[0]}')
+            print(f'puk  {e} {rows[i][column_to_read]} {type(rows[i][column_to_read])} {strCutZeroInBegin}')
             sys.exit()
         except IndexError:
             print(len(rows[i]),rows[i])
     
-    '''
+print(rows)
 
 # Перезаписываем файл
 with open(filename, 'w', encoding='utf-8',newline='') as file:
