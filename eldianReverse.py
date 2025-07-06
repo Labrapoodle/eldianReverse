@@ -1,16 +1,18 @@
 import csv
 import sys
+import pytest
+
 
 filename=sys.argv[1]
-column_to_read=int(sys.argv[1])-1
-row_to_start=0
-
 if("aliases" in filename ):
     delim=';'
     row_to_start=1
-    column_to_read==4
+    column_to_read=4
 else:
     delim=","
+    row_to_start=0
+    column_to_read=0
+    
 
 #Читаем файл и записываем в rows
 try:
@@ -18,6 +20,7 @@ try:
         rows = list(csv.reader(file,delimiter=delim))
 except FileNotFoundError:
     print("\033[31mФайл не найден")
+    print(sys.argv)
     sys.exit()
 except PermissionError:
     print("\033[31mНет прав доступа")
@@ -47,7 +50,8 @@ with open(filename, 'w', encoding='utf-8',newline='') as file:
     for row in rows:
         writer.writerow([str(cell) for cell in row])         
         
-    
+
+
 
 
 
