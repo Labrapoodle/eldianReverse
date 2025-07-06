@@ -48,6 +48,7 @@ def test_eldian_reverse(tmp_path):
             expected_reversed = reverse_hex_bytes(original_hex)
             assert reversed_hex == expected_reversed, \
                 f"Ошибка в строке: ожидалось {expected_reversed}, получено {reversed_hex}"
+    
 
 if __name__ == "__main__":
     pytest.main()

@@ -4,7 +4,11 @@ import pytest
 
 
 filename=sys.argv[1]
-if("aliases" in filename ):
+nameCopy = filename
+ind = nameCopy.rfind('/')
+if(ind!=-1):
+     nameCopy=nameCopy[ind+1:]
+if("aliases" in nameCopy ):
     delim=';'
     row_to_start=1
     column_to_read=4
