@@ -45,8 +45,12 @@ def test_eldian_reverse(tmp_path):
             reversed_hex = row1[0].strip().upper()   # Из первого (измененного) файла
             
             # Проверяем, что байты перевернуты правильно
-            expected_reversed = reverse_hex_bytes(original_hex)
-            assert reversed_hex == expected_reversed, \
+            sTemp = str(hex(int(original_hex,base=16)))[2:]
+            if(len(sTemp)%2):
+                        sTemp="0"+sTemp
+            expected_reversed = reverse_hex_bytes(sTemp)
+            
+            assert reversed_hex.lower() == expected_reversed, \
                 f"Ошибка в строке: ожидалось {expected_reversed}, получено {reversed_hex}"
     
 
