@@ -16,6 +16,9 @@ else:
     delim=","
     row_to_start=0
     column_to_read=0
+
+if(len(sys.argv)>2):
+     column_to_read=sys.argv[2]
     
 
 #Читаем файл и записываем в rows
@@ -33,7 +36,7 @@ except IOError as e:
     print(f"\033[31mОшибка ввода-вывода: {e}")
     sys.exit()   
 
-
+#Меняем порядок байтов в rows
 for i in range(row_to_start,len(rows)):   
     try:
         if(rows[i][column_to_read]!=""):                
