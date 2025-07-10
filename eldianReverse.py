@@ -18,7 +18,7 @@ else:
     column_to_read=0
 
 if(len(sys.argv)>2):
-     column_to_read=sys.argv[2]
+     column_to_read=int(sys.argv[2])-1
     
 
 #Читаем файл и записываем в rows
